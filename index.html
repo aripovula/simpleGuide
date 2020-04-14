@@ -25,6 +25,11 @@
                 <span style="font-size: 28px;">Phoenix</span></a></li>
              <li class = "tab col s3"><a onclick="renderCards('Liveview')">
                 <span style="font-size: 28px;">PHX LiveView</span></a></li>
+             <li class = "tab col s3">
+                 <input placeholder="search" type="search" 
+                 style="width: 80%;" onkeyup="searchTopics(this.value)">
+              </div>
+             </li>
           </ul>
        </div>       
     </div> 
@@ -35,8 +40,8 @@
     <div id="headersAndCards"></div>
 
     <script type="text/javascript">
-        var topics;
         var currentField = "Elixir";
+        var searchTerm;
         var subheaderEls = {};
         window.onload = doOnLoad();
 
@@ -45,7 +50,7 @@
             renderCards("Elixir");
         }
 
-        function getSubheads(){
+        function getSubheads(topics){
             var subheaders = 
                 topics
                 .filter(i => i.field == currentField)
@@ -55,7 +60,7 @@
         }
 
         function toggleView(isExpand) {
-            var subheadersSet = getSubheads();
+            var subheadersSet = getSubheads(getTopics());
             for (var i = 0; i < subheadersSet.length; i++) {
                 var el = document.getElementById(subheadersSet[i]+"cont");
                 if (isExpand) {
@@ -70,9 +75,22 @@
             return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);              
         }
 
+        function searchTopics(e){
+            searchTerm = e;
+            console.log('e-' + searchTerm);
+            renderCards(currentField);
+        }
+
         function renderCards(field) {
+            var topics = getTopics();
+            if (searchTerm && searchTerm.length > 0) {
+                topics = topics.filter(i => 
+                i.topic.includes(searchTerm) ||
+                i.title.includes(searchTerm) ||
+                i.comment.includes(searchTerm));
+            }
             currentField = field;
-            var subheadersSet = getSubheads();
+            var subheadersSet = getSubheads(topics);
             document.getElementById("headersAndCards").innerHTML = '';
 
             for (var i = 0; i < subheadersSet.length; i++) {
