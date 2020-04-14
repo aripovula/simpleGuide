@@ -1,0 +1,47 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.grid-item {
+  margin: 10px;
+}
+.tabs .tab a {
+  color: rgba(38, 166, 154, 0.7);
+}
+.tabs .tab a:hover {
+  color:#26a69a;
+  cursor: pointer;
+}
+.tabs .tab a:focus.active {
+  color:#26a69a;
+  background-color: rgba(38, 166, 154, 0.2);
+}
+.tabs .tab a.active {
+  color:#26a69a;
+  background-color: rgba(38, 166, 154, 0.2);
+}
+.tabs .indicator {
+  background-color:#26a69a;
+  color:#26a69a;
+}
+.subheader {
+  margin-left: 5%; 
+  font-size: 20px; 
+}
+.subheader:hover {
+  cursor: pointer;
+  color: green;
+}
+
+.linkA{
+  margin-left: 5%;
+  color: black;
+}
+.linkA:hover {
+  cursor: pointer;
+  color: green;
+}
+
+.mystyle {
+  display: none;
+}

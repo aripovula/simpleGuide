@@ -7,193 +7,97 @@
     <title>learn Elixir & Phoenix</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <link rel="stylesheet" href="./index.css" />
+    <!-- <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>            -->
+    <script type = "text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
 </head>
-
-<style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: auto auto auto;
-    }
-    .grid-item {
-        margin: 10px;
-    }
-    .tabs .tab a {
-        color: rgba(38, 166, 154, 0.7);
-    }
-    .tabs .tab a:hover {
-        color:#26a69a;
-        cursor: pointer;
-    }
-    .tabs .tab a:focus.active {
-        color:#26a69a;
-        background-color: rgba(38, 166, 154, 0.2);
-    }
-    .tabs .tab a.active {
-        color:#26a69a;
-        background-color: rgba(38, 166, 154, 0.2);
-    }
-    .tabs .indicator {
-        background-color:#26a69a;
-        color:#26a69a;
-    }
-    .subheader {
-        margin-left: 5%; 
-        font-size: 20px; 
-    }
-    .subheader:hover {
-        cursor: pointer;
-        color: green;
-    }
-    </style>
     
 <body>
     <div class = "row">
        <div class = "col s12">
           <ul class = "tabs">
              <li class = "tab col s3">
-                 <a class = "active" onclick="onTabChange('Elixir')">
+                 <a class = "active" onclick="renderCards('Elixir')">
                     <span style="font-size: 28px;">Elixir</span></a></li>
-             <li class = "tab col s3"><a onclick="onTabChange('Phoenix')">
+             <li class = "tab col s3"><a onclick="renderCards('Phoenix')">
                 <span style="font-size: 28px;">Phoenix</span></a></li>
-             <li class = "tab col s3"><a onclick="onTabChange('Liveview')">
+             <li class = "tab col s3"><a onclick="renderCards('Liveview')">
                 <span style="font-size: 28px;">PHX LiveView</span></a></li>
           </ul>
        </div>       
     </div> 
 
+    <a onclick="toggleView(true)" class="linkA">expand all</a>
+    <a onclick="toggleView(false)" class="linkA">collapse all</a>
+
     <div id="headersAndCards"></div>
 
-    <blockquote id="subheaders" class="subheader"></blockquote>
-        
-    <div id="appsgridd" class="grid-container"></div>
-
     <script type="text/javascript">
+        var topics;
+        var currentField = "Elixir";
+        var subheaderEls = {};
+        window.onload = doOnLoad();
 
-        var topics = [
-            {
-                field: 'Elixir',
-                topic: '0200-3rd party documentation',
-                title: 'Elixir 3rd',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://materializecss.com/tabs.html'
-            },
-            {
-                field: 'Elixir',
-                topic: '0200-3rd party documentation',
-                title: 'Elixir 3rd',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
-            },
-            {
-                field: 'Elixir',
-                topic: '0200-3rd party documentation',
-                title: 'Elixir 3rd',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
-            },
-            {
-                field: 'Elixir',
-                topic: '0200-3rd party documentation',
-                title: 'Elixir 3rd',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
-            },
-            {
-                field: 'Elixir',
-                topic: '0100-official documentation',
-                title: 'Elixir itself',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
-            },
-            {
-                field: 'Elixir',
-                topic: '0100-official documentation',
-                title: 'Elixir itself',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
-            },
-            {
-                field: 'Elixir',
-                topic: '0100-official documentation',
-                title: 'Elixir itself',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
-            },
-            {
-                field: 'Elixir',
-                topic: '0300-examples',
-                title: 'Elixir examples',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
-            },
-            {
-                field: 'Phoenix',
-                topic: '0100-official documentation',
-                title: 'Phoenix itself',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
-            },
-            {
-                field: 'Phoenix',
-                topic: '0100-official documentation',
-                title: 'Phoenix itself',
-                comment: 'I am a very simple card. I am good at containing small bits of information',
-                suggestedBy: 'Zack',
-                glink: 'https://elixir-lang.org/getting-started/introduction.html'
+        function doOnLoad() {
+            topics = getTopics();        
+            renderCards("Elixir");
+        }
+
+        function getSubheads(){
+            var subheaders = 
+                topics
+                .filter(i => i.field == currentField)
+                .map(i => i.topic);
+            return Array.from(new Set(subheaders)).sort();
+
+        }
+
+        function toggleView(isExpand) {
+            var subheadersSet = getSubheads();
+            for (var i = 0; i < subheadersSet.length; i++) {
+                var el = document.getElementById(subheadersSet[i]+"cont");
+                if (isExpand) {
+                    el.style.display  = "inline-grid";
+                } else {
+                    el.style.display = "none";
+                }
             }
-        ];
-
-        var subheaders = topics.map(i => i.topic);
-        var subheadersSet = Array.from(new Set(subheaders)).sort();
-
-        window.onload = renderCards("Elixir");
-
-        function onTabChange(field) {
-            renderCards(field);
         }
 
         function hashCode(s){
             return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);              
         }
 
-        // <div id="headersAndCards"></div>
-        // <blockquote id="subheaders" class="subheader"></blockquote>
-        // <div id="appsgridd" class="grid-container"></div>
-
         function renderCards(field) {
+            currentField = field;
+            var subheadersSet = getSubheads();
             document.getElementById("headersAndCards").innerHTML = '';
-            document.getElementById("appsgridd").innerHTML = '';
-
-            var subheaderEls = {};
 
             for (var i = 0; i < subheadersSet.length; i++) {
-                if (topics[i].field == field) {
-                    var newDiv = document.createElement("div");
-                    var blockquote = document.createElement("blockquote");
-                    blockquote.className = "subheader";
-                    blockquote.innerHTML = subheadersSet[i];
-                    newDiv.appendChild(blockquote);
-
-                    var gridDiv = document.createElement("div");
-                    gridDiv.id = "grid-container";
-                    gridDiv.className = "grid-container";
-                    newDiv.appendChild(gridDiv);
-
-                    // subheaderEls[subheadersSet[i]+"title"] = blockquote;
-                    subheaderEls[subheadersSet[i]] = gridDiv;
-                    document.getElementById("headersAndCards").appendChild(newDiv);
-                }
+                var newDiv = document.createElement("div");
+                var blockquote = document.createElement("blockquote");
+                blockquote.id = subheadersSet[i];
+                blockquote.className = "subheader";
+                blockquote.innerHTML = subheadersSet[i];
+                blockquote.onclick = function() {
+                    var el = document.getElementById(this.id+"cont");
+                    if (window.getComputedStyle(el).display === "none") {
+                        el.style.display  = "inline-grid";
+                    } else {
+                        el.style.display = "none";
+                    }
+                };
+                newDiv.appendChild(blockquote);
+                
+                var gridDiv = document.createElement("div");
+                gridDiv.id = subheadersSet[i]+"cont";
+                gridDiv.className = "grid-container";
+                
+                subheaderEls[subheadersSet[i]] = gridDiv;
+                newDiv.appendChild(gridDiv);
+                document.getElementById("headersAndCards").appendChild(newDiv);
             }
 
             for (var i = 0; i < topics.length; i++) {
@@ -252,6 +156,91 @@
                 subheaderEls[topics[i].topic].appendChild(aCard);
                 // document.getElementById("appsgridd").appendChild(aCard);
             }
+        }
+
+        function getTopics() {
+            return [
+                    {
+                        field: 'Elixir',
+                        topic: '0200-3rd party documentation',
+                        title: 'Elixir 3rd',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://materializecss.com/tabs.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0200-3rd party documentation',
+                        title: 'Elixir 3rd',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0200-3rd party documentation',
+                        title: 'Elixir 3rd',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0200-3rd party documentation',
+                        title: 'Elixir 3rd',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0100-official documentation',
+                        title: 'Elixir itself',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0100-official documentation',
+                        title: 'Elixir itself',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0100-official documentation',
+                        title: 'Elixir itself',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-examples',
+                        title: 'Elixir examples',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Phoenix itself',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Phoenix itself',
+                        comment: 'I am a very simple card. I am good at containing small bits of information',
+                        suggestedBy: 'Zack',
+                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                    }
+                ]
         }
     </script>
 </body>
