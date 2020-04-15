@@ -1,10 +1,13 @@
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 33.3% 33.3% 33.3%;
 }
+
 .grid-item {
-  margin: 10px;
+  margin: 0 8px;
+  text-align: left;
 }
+
 .tabs .tab a {
   color: rgb(185, 117, 117);
 }
