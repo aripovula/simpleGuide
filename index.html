@@ -27,6 +27,9 @@
                         <li class = "tab col s2"><a id="LiveView" onclick="renderCards('LiveView')">
                             <span style="font-size: 24px;">PHX LiveView</span></a></li>
                         <li class = "tab col s2">
+                            <a id="combined" onclick="renderCards('combined')">
+                            <span style="font-size: 24px;">All</span></a></li>    
+                        <li class = "tab col s2">
                             <input placeholder="search" type="search" 
                             style="width: 70%;" onkeyup="searchTopics(this.value)">
                         </li>
@@ -60,14 +63,20 @@
         function doOnLoad() {
             topics = getTopics();
             currentField = "Elixir";      
-            renderCards("Elixir");
+            renderCards(currentField);
         }
 
         function getSubheads(topics){
-            var subheaders = 
-                topics
-                .filter(i => i.field == currentField)
-                .map(i => i.topic);
+            var subheaders;
+            if (currentField == 'combined') {
+                subheaders = 
+                    topics.map(i => i.topic);
+            } else {
+                subheaders = 
+                    topics
+                    .filter(i => i.field.includes(currentField))
+                    .map(i => i.topic);
+            }
             return Array.from(new Set(subheaders)).sort();
 
         }
@@ -136,7 +145,7 @@
             }
 
             for (var i = 0; i < topics.length; i++) {
-                if (topics[i].field == field) {
+                if (field == 'combined' || topics[i].field.includes(field)) {
                     var aCard = document.createElement("div");
                     aCard.className = "grid-item";
                         
@@ -267,70 +276,6 @@
                     },
                     {
                         field: 'Elixir',
-                        topic: '0200-other documentation',
-                        title: 'Elixir 3rd',
-                        comment: 'I am a very simple card. I am good at containing small bits of information',
-                        suggestedBy: 'Zack',
-                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
-                    },
-                    {
-                        field: 'LiveView',
-                        topic: '0200-other documentation',
-                        title: 'LiveView Walk-Through',
-                        comment: 'Walk-Through of Phoenix LiveView by elixirschool.com',
-                        suggestedBy: 'Zack',
-                        glink: 'https://elixirschool.com/blog/phoenix-live-view/'
-                    },
-                    {
-                        field: 'Elixir',
-                        topic: '0400-tools and approaches (debug, refactor and etc.)',
-                        title: 'refactor Elixir code',
-                        comment: 'Refactoring a Function in Elixir',
-                        suggestedBy: 'superChris',
-                        glink: 'https://dockyard.com/blog/2020/04/01/refactoring-a-function-in-elixir'
-                    },
-                    {
-                        field: 'Elixir',
-                        topic: '0400-tools and approaches (debug, refactor and etc.)',
-                        title: 'debugging Elixir code',
-                        comment: 'YouTube Video on identifying function header mismatch, opening modules and functions in editors, and prying.',
-                        suggestedBy: 'Ula',
-                        glink: 'https://www.youtube.com/watch?v=LE2y4kh56pQ'
-                    },
-                    {
-                        field: 'Elixir',
-                        topic: '0400-tools and approaches (debug, refactor and etc.)',
-                        title: 'Dialyzer and type specifications',
-                        comment: 'covers What Dialyzer is and how it works & writing type specifications and defining your own types',
-                        suggestedBy: 'Ula',
-                        glink: 'https://livebook.manning.com/book/the-little-elixir-and-otp-guidebook/chapter-10/1'
-                    },
-                    {
-                        field: 'Phoenix',
-                        topic: '0400-tools and approaches (debug, refactor and etc.)',
-                        title: 'debugging Phoenix code',
-                        comment: 'Debugging a Controller, debugging a View, debugging a Template, debugging a Model, debugging in Tests',
-                        suggestedBy: 'Ula',
-                        glink: 'https://medium.com/@diamondgfx/debugging-phoenix-with-iex-pry-5417256e1d11'
-                    },
-                    {
-                        field: 'Phoenix',
-                        topic: '0400-tools and approaches (debug, refactor and etc.)',
-                        title: 'debug Phoenix apps',
-                        comment: 'YouTube video on debugging a Phoenix app, in-line inspection and configuring IEx session to make things faster',
-                        suggestedBy: 'Ula',
-                        glink: 'https://www.youtube.com/watch?v=EBbSM6DSZnA'
-                    },
-                    {
-                        field: 'LiveView',
-                        topic: '0400-tools and approaches (debug, refactor and etc.)',
-                        title: 'refactor LiveView apps',
-                        comment: 'refactor to make code simpler and to reduce the number of messages exchanged between our browser and LiveView',
-                        suggestedBy: 'Ula',
-                        glink: 'https://www.poeticoding.com/phoenix-liveview-live_link/'
-                    },
-                    {
-                        field: 'Elixir',
                         topic: '0300-concepts and special aspects',
                         title: 'Intro to OOP in Elixir',
                         comment: 'OOP in Elixir vs Ruby OOP',
@@ -348,10 +293,74 @@
                     {
                         field: 'Elixir',
                         topic: '0300-concepts and special aspects',
+                        title: 'Pipe Operator',
+                        comment: 'Basic intro to Pipe Operator',
+                        suggestedBy: 'Ula',
+                        glink: 'https://elixirschool.com/en/lessons/basics/pipe-operator/'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Elixir Guards',
+                        comment: 'Hex docs - Guards are a way to augment pattern matching with more complex checks',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/elixir/guards.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Patterns and guards',
+                        comment: 'pattern matching allows to assert on the shape or extract values from data-structures. Patterns are often augmented with guards',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/elixir/patterns-and-guards.html#guards'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Comprehensions',
+                        comment: 'Comprehensions in Elixir (incl. example with filters)',
+                        suggestedBy: 'Ula',
+                        glink: 'https://toranbillups.com/blog/archive/2018/10/18/comprehensions-in-elixir/'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Anonymous functions',
+                        comment: 'Short but useful summary of Anonymous functions',
+                        suggestedBy: 'Ula',
+                        glink: 'https://prograils.com/courses/elixir/ch/anonymous-functions-overview'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Trailing bang (foo!)',
+                        comment: 'A trailing bang (exclamation mark) signifies a function or macro where failure cases raise an exception.',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/elixir/naming-conventions.html#trailing-bang-foo'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Typespecs',
+                        comment: 'Elixir comes with a notation for declaring types and specifications.',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/elixir/typespecs.html#content'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
                         title: '& in &(&1 + &2)',
                         comment: 'add_two = &(&1 + 2) - what is &(... and what is &1 ?',
                         suggestedBy: 'Ula',
                         glink: 'https://toranbillups.com/blog/archive/2018/09/28/ampersand-and-functions-in-elixir/'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: '=> or : in maps?',
+                        comment: 'Which separator should be used in maps  => or : ?',
+                        suggestedBy: 'Ula',
+                        glink: 'https://stackoverflow.com/questions/53025466/what-is-the-difference-between-and-in-an-elixir-map'
                     },
                     {
                         field: 'Elixir',
@@ -371,19 +380,59 @@
                     },
                     {
                         field: 'Elixir',
-                        topic: '0500-code examples',
-                        title: 'No OOP is Elixir? No worries',
-                        comment: 'I am a very simple card. I am good at containing small bits of information',
-                        suggestedBy: 'Zack',
-                        glink: 'https://exercism.io/tracks/elixir/exercises/robot-simulator/solutions/8d004d1190624cf082aebaf0f315a892'
+                        topic: '0300-concepts and special aspects',
+                        title: 'Elixir and IO Lists',
+                        comment: 'Elixir and IO Lists, Part 1: Building Output Efficiently',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently/'
                     },
                     {
                         field: 'Elixir',
-                        topic: '0600-books, courses and tutorials',
-                        title: 'Programming Phoenix 1.4',
-                        comment: 'written by Phoenix creator Chris McCord, Elixir creator José Valim and others',
-                        suggestedBy: 'Zack',
-                        glink: 'https://pragprog.com/book/phoenix14/programming-phoenix-1-4'
+                        topic: '0300-concepts and special aspects',
+                        title: 'Elixir and Unicode',
+                        comment: 'Elixir and Unicode, Part 1: Unicode and UTF-8 Explained',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.bignerdranch.com/blog/elixir-and-unicode-part-1-unicode-and-utf-8-explained/'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'refactor Elixir code',
+                        comment: 'Refactoring a Function in Elixir',
+                        suggestedBy: 'superChris',
+                        glink: 'https://dockyard.com/blog/2020/04/01/refactoring-a-function-in-elixir'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'debugging Elixir code',
+                        comment: 'YouTube Video on identifying function header mismatch, opening modules and functions in editors, and prying.',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.youtube.com/watch?v=LE2y4kh56pQ'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'Dialyzer and type specifications',
+                        comment: 'covers What Dialyzer is and how it works & writing type specifications and defining your own types',
+                        suggestedBy: 'Ula',
+                        glink: 'https://livebook.manning.com/book/the-little-elixir-and-otp-guidebook/chapter-10/1'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'Testing',
+                        comment: 'Testing guide from elixirschool.com',
+                        suggestedBy: 'Ula',
+                        glink: 'https://elixirschool.com/en/lessons/basics/testing/'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'Elixir mocks',
+                        comment: 'Mocks and explicit contracts - article by Elixir founder José Valim',
+                        suggestedBy: 'Ula',
+                        glink: ''
                     },
                     {
                         field: 'Elixir',
@@ -402,8 +451,8 @@
                         glink: 'https://www.udemy.com/course/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/'
                     },
                     {
-                        field: 'Elixir',
-                        topic: '0700-series of Elixir&Phoenix blogs/articles',
+                        field: 'Elixir,Phoenix,LiveView',
+                        topic: '0700-series of Elixir & Phoenix blogs/articles',
                         title: 'elixirschool.com blogs',
                         comment: 'Blogs in elixirschool.com',
                         suggestedBy: 'Ula',
@@ -411,32 +460,24 @@
                     },
                     {
                         field: 'Elixir',
-                        topic: '0700-series of Elixir&Phoenix blogs/articles',
-                        title: 'Series by Toran Billups',
+                        topic: '0700-series of Elixir & Phoenix blogs/articles',
+                        title: 'Toran Billups series',
                         comment: 'Toran Billups - Elixir publication series. Very short but very useful',
                         suggestedBy: 'Ula',
                         glink: 'https://toranbillups.com'
                     },
                     {
-                        field: 'LiveView',
-                        topic: '0700-series of Elixir&Phoenix blogs/articles',
-                        title: 'elixirschool.com blogs',
-                        comment: 'Blogs in elixirschool.com',
+                        field: 'Elixir,Phoenix,LiveView',
+                        topic: '0700-series of Elixir & Phoenix blogs/articles',
+                        title: 'Samuel Mullen series',
+                        comment: 'Samuel Mullen - Elixir publication series. Very short but very useful',
                         suggestedBy: 'Ula',
-                        glink: 'https://elixirschool.com/blog/'
-                    },
-                    {
-                        field: 'LiveView',
-                        topic: '0700-series of Elixir&Phoenix blogs/articles',
-                        title: 'Series by Alvise Susmel',
-                        comment: 'LiveView publication series by Alvise Susmel',
-                        suggestedBy: 'Ula',
-                        glink: 'https://www.poeticoding.com/all/'
+                        glink: 'https://samuelmullen.com/articles/'
                     },
                     {
                         field: 'Phoenix',
                         topic: '0100-official documentation',
-                        title: 'Phoenix Hex docs - Guides',
+                        title: 'Phoenix Hex Guides',
                         comment: 'Guides on Phoenix is a web development framework',
                         suggestedBy: 'Zack',
                         glink: 'https://hexdocs.pm/phoenix/overview.html#content'
@@ -444,10 +485,138 @@
                     {
                         field: 'Phoenix',
                         topic: '0100-official documentation',
-                        title: 'Phoenix Hex docs - Modules',
+                        title: 'Phoenix Hex Modules',
                         comment: 'Documentation of the Phoenix modules',
                         suggestedBy: 'Zack',
                         glink: 'https://hexdocs.pm/phoenix/Phoenix.html#content'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Phoenix.HTML docs',
+                        comment: 'Helpers related to producing HTML forms - useful tool when working with templates',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#content'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Ecto Hex docs',
+                        comment: 'This guide is an introduction to Ecto, the database wrapper and query generator for Elixir.',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/ecto/getting-started.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Phoenix.Pagination',
+                        comment: 'Simple pagination for Ecto and Phoenix using plaing EEx templates',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/phoenix_pagination/readme.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Phoenix Templates',
+                        comment: 'Brief introduction to Phoenix Templates',
+                        suggestedBy: 'Ula',
+                        glink: 'https://samuelmullen.com/articles/phoenix-templates/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Custom Validations',
+                        comment: 'Writing Custom Validations With Ecto 3',
+                        suggestedBy: 'Ula',
+                        glink: 'https://toranbillups.com/blog/archive/2019/02/25/writing-custom-validations-with-ecto-3/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Ecto Changesets',
+                        comment: 'What are changesets?',
+                        suggestedBy: 'Ula',
+                        glink: 'https://elixirschool.com/en/lessons/ecto/changesets/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Attach IEx to Docker',
+                        comment: 'Attach IEx to running Elixir inside docker container',
+                        suggestedBy: 'Ula',
+                        glink: 'https://toranbillups.com/blog/archive/2019/04/20/attach-iex-to-running-elixir-inside-docker-container/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'debugging Phoenix code',
+                        comment: 'Debugging a Controller, debugging a View, debugging a Template, debugging a Model, debugging in Tests',
+                        suggestedBy: 'Ula',
+                        glink: 'https://medium.com/@diamondgfx/debugging-phoenix-with-iex-pry-5417256e1d11'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'debug Phoenix apps',
+                        comment: 'YouTube video on debugging a Phoenix app, in-line inspection and configuring IEx session to make things faster',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.youtube.com/watch?v=EBbSM6DSZnA'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'Phoenix testing',
+                        comment: 'Hex docs - Introduction to Testing',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/phoenix/testing.html#content'
+                    },
+                    {
+                        field: 'Phoenix,LiveView',
+                        topic: '0600-books, courses and tutorials',
+                        title: 'Programming Phoenix 1.4',
+                        comment: 'written by Phoenix creator Chris McCord, Elixir creator José Valim and others',
+                        suggestedBy: 'Zack',
+                        glink: 'https://pragprog.com/book/phoenix14/programming-phoenix-1-4'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0600-books, courses and tutorials',
+                        title: 'Mastering Phoenix Framework',
+                        comment: 'open-source book "Mastering Phoenix Framework" by Shankar Dhanasekaran',
+                        suggestedBy: 'Ula',
+                        glink: 'https://shankardevy.com/phoenix-inside-out-mpf/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0600-books, courses and tutorials',
+                        title: 'File upload tutorial',
+                        comment: 'Step-by-Step Tutorial to Build a Phoenix App that Supports User Upload',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.poeticoding.com/step-by-step-tutorial-to-build-a-phoenix-app-that-supports-user-uploads/'
+                    },
+                    {
+                        field: 'LiveView',
+                        topic: '0100-official documentation',
+                        title: 'LiveView Hex docs',
+                        comment: 'Phoenix LiveView docs',
+                        suggestedBy: 'Zack',
+                        glink: 'https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#content'
+                    },
+                    {
+                        field: 'LiveView',
+                        topic: '0200-other documentation',
+                        title: 'LiveView Walk-Through',
+                        comment: 'Walk-Through of Phoenix LiveView by elixirschool.com',
+                        suggestedBy: 'Ula',
+                        glink: 'https://elixirschool.com/blog/phoenix-live-view/'
+                    },
+                    {
+                        field: 'LiveView',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Design Patterns',
+                        comment: 'LiveView Design Patterns - LiveComponent and the Single Responsibility Principle',
+                        suggestedBy: 'Ula',
+                        glink: 'https://elixirschool.com/blog/live-view-live-component/'
                     },
                     {
                         field: 'LiveView',
@@ -459,11 +628,11 @@
                     },
                     {
                         field: 'LiveView',
-                        topic: '0100-official documentation',
-                        title: 'LiveView Hex docs',
-                        comment: 'Phoenix LiveView examples set by Phoenix creator Chris McCord and Elixir creator José Valim. Run this repo and see 14 LiveView examples working. Updated recently.',
-                        suggestedBy: 'Zack',
-                        glink: 'https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#content'
+                        topic: '0400-debugging, testing, refactoring, etc.',
+                        title: 'refactor LiveView apps',
+                        comment: 'refactor to make code simpler and to reduce the number of messages exchanged between our browser and LiveView',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.poeticoding.com/phoenix-liveview-live_link/'
                     },
                     {
                         field: 'LiveView',
@@ -472,6 +641,14 @@
                         comment: 'Phoenix LiveView examples coded by Phoenix creator Chris McCord and Elixir creator José Valim. Run this repo and see 14 LiveView examples working. Updated recently.',
                         suggestedBy: 'Ula',
                         glink: 'https://github.com/chrismccord/phoenix_live_view_example'
+                    },
+                    {
+                        field: 'LiveView',
+                        topic: '0500-code examples',
+                        title: 'Geo Racer',
+                        comment: 'Repo of Geo Racer by Zack Kayser (Gaslight)',
+                        suggestedBy: 'Ula',
+                        glink: 'https://github.com/zkayser/georacer'
                     },
                     {
                         field: 'LiveView',
@@ -495,15 +672,23 @@
                         title: 'LiveView example - ToDo App',
                         comment: 'Phoenix LiveView ToDo app - example code and video guide',
                         suggestedBy: 'Ula',
-                        glink: 'https://dennisbeatty.com/2019/04/24/how-to-create-a-todo-list-with-phoenix-LiveView.html'
+                        glink: 'https://dennisbeatty.com/2019/04/24/how-to-create-a-todo-list-with-phoenix-liveview.html'
                     },
                     {
-                        field: 'Phoenix',
-                        topic: '0100-official documentation',
-                        title: 'Phoenix itself',
-                        comment: 'I am a very simple card. I am good at containing small bits of information',
-                        suggestedBy: 'Zack',
-                        glink: 'https://elixir-lang.org/getting-started/introduction.html'
+                        field: 'LiveView',
+                        topic: '0500-code examples',
+                        title: 'Phoenix Phrenzy projects',
+                        comment: 'Phoenix Phrenzy is a contest for developers to build with Phoenix LiveView. Repos of contest projects.',
+                        suggestedBy: 'Ula',
+                        glink: 'https://phoenixphrenzy.com/results'
+                    },
+                    {
+                        field: 'LiveView',
+                        topic: '0700-series of Elixir & Phoenix blogs/articles',
+                        title: 'Series by Alvise Susmel',
+                        comment: 'LiveView publication series by Alvise Susmel',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.poeticoding.com/all/'
                     }
                 ]
         }
