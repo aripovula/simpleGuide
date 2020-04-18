@@ -21,15 +21,15 @@
                     <ul class = "tabs">
                         <li class = "tab col s2">
                             <a id="Elixir" class = "active" onclick="renderCards('Elixir')">
-                            <span style="font-size: 24px;">Elixir</span></a></li>
+                            <span class="tabFontSize">Elixir</span></a></li>
                         <li class = "tab col s2"><a id="Phoenix" onclick="renderCards('Phoenix')">
-                            <span style="font-size: 24px;">Phoenix</span></a></li>
+                            <span class="tabFontSize">Phoenix</span></a></li>
                         <li class = "tab col s2"><a id="LiveView" onclick="renderCards('LiveView')">
-                            <span style="font-size: 24px;">PHX LiveView</span></a></li>
+                            <span class="tabFontSize">PHX LiveView</span></a></li>
                         <li class = "tab col s2">
                             <a id="combined" onclick="renderCards('combined')">
-                            <span style="font-size: 24px;">All</span></a></li>    
-                        <li class = "tab col s2">
+                            <span class="tabFontSize">All</span></a></li>    
+                        <li class = "tab col s4">
                             <input placeholder="search" type="search" 
                             style="width: 70%;" onkeyup="searchTopics(this.value)">
                         </li>
@@ -98,7 +98,7 @@
         }
 
         function searchTopics(e){
-            searchTerm = e;
+            searchTerm = e.toUpperCase();
             renderCards(currentField);
         }
 
@@ -111,10 +111,10 @@
             document.getElementById(field).className="active"
             if (searchTerm && searchTerm.length > 0) {
                 topics = topics.filter(i => 
-                i.topic.toLowerCase().includes(searchTerm) ||
-                i.title.toLowerCase().includes(searchTerm) ||
-                i.suggestedBy.toLowerCase().includes(searchTerm) ||
-                i.comment.toLowerCase().includes(searchTerm));
+                i.topic.toUpperCase().includes(searchTerm) ||
+                i.title.toUpperCase().includes(searchTerm) ||
+                i.suggestedBy.toUpperCase().includes(searchTerm) ||
+                i.comment.toUpperCase().includes(searchTerm));
             }
             var subheadersSet = getSubheads(topics);
             document.getElementById("headersAndCards").innerHTML = '';
@@ -157,9 +157,11 @@
                     aCardInner2.className = "card-content black-text";
                     aCardInner1.appendChild(aCardInner2);
                     
-                    var title = document.createElement("span");
-                    title.className = "card-title";
+                    var title = document.createElement("a");
+                    title.className = "card-title titleS";
                     title.innerHTML = topics[i].title
+                    title.href = topics[i].glink
+                    title.target = "blank"
                     
                     var ref = document.createElement("span");
                     ref.style.fontSize = "18px";
@@ -322,7 +324,6 @@
                         suggestedBy: 'Ula',
                         glink: 'https://medium.com/@ItizAdz/zip-elixir-abusing-protocols-for-triple-dispatch-and-ultimate-flexibility-4c817a5940d6'
                     },
-
                     {
                         field: 'Elixir',
                         topic: '0300-concepts and special aspects',
@@ -330,6 +331,30 @@
                         comment: 'Please try this exercise where you would otherwise use OOP. Then please click link below to see a very good solution. URL: https://exercism.io/my/tracks/elixir, exercise: Robot Simulator. ',
                         suggestedBy: 'Ula',
                         glink: 'https://exercism.io/tracks/elixir/exercises/robot-simulator/solutions/8d004d1190624cf082aebaf0f315a892'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Idiomatic Elixir',
+                        comment: 'YouTube video by José Valim (Elixir creator) - Idioms for building distributed fault-tolerant applications with Elixir',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.youtube.com/watch?v=MMfYXEH9KsY'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Idiomatic Elixir - 2',
+                        comment: 'YouTube video - Claudio Ortolina - Idiomatic Elixir - Bristech 2016',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.youtube.com/watch?v=a-8u6g8Wbf8'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Elixir style guide',
+                        comment: 'This is community style guide for the Elixir programming language.',
+                        suggestedBy: 'Ula',
+                        glink: 'https://github.com/christopheradams/elixir_style_guide'
                     },
                     {
                         field: 'Elixir',
@@ -494,6 +519,14 @@
                     {
                         field: 'Elixir',
                         topic: '0600-books, courses and tutorials',
+                        title: 'Learning resources',
+                        comment: 'Learning resources from https://elixir-lang.org/learning.html',
+                        suggestedBy: 'Ula',
+                        glink: 'https://elixir-lang.org/learning.html'
+                    },
+                    {
+                        field: 'Elixir',
+                        topic: '0600-books, courses and tutorials',
                         title: 'Udemy course on Elixir and Phoenix',
                         comment: 'A very good course with hand on projects - NO LiveView though',
                         suggestedBy: 'Ula',
@@ -562,6 +595,22 @@
                         comment: 'Simple pagination for Ecto and Phoenix using plaing EEx templates',
                         suggestedBy: 'Ula',
                         glink: 'https://hexdocs.pm/phoenix_pagination/readme.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Plug Hex docs',
+                        comment: 'Docs for Plug - a specification for composable modules between web applications',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/plug/readme.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Other docs',
+                        comment: 'List of other resources for learning about Phoenix and some of the projects it depends on.',
+                        suggestedBy: 'Ula',
+                        glink: 'https://hexdocs.pm/phoenix/learning.html'
                     },
                     {
                         field: 'Phoenix',
@@ -701,6 +750,22 @@
                     },
                     {
                         field: 'LiveView',
+                        topic: '0200-other docs and general introductions',
+                        title: 'LiveView Video Walk-Through',
+                        comment: 'YouTube video - Chris McCord (Phoenix creator) - Keynote: Phoenix LiveView - Interactive Apps without Javascript - ElixirConf EU 2019',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.youtube.com/watch?v=8xJzHq8ru0M'
+                    },
+                    {
+                        field: 'LiveView',
+                        topic: '0200-other docs and general introductions',
+                        title: 'LiveView Video Walk-Through - 2',
+                        comment: 'YouTube video - ElixirConf 2019 - Phoenix LiveView Demystified - Alex Garibay',
+                        suggestedBy: 'Ula',
+                        glink: 'https://www.youtube.com/watch?v=9eOo8hSbMAc'
+                    },
+                    {
+                        field: 'LiveView',
                         topic: '0300-concepts and special aspects',
                         title: 'Design Patterns',
                         comment: 'LiveView Design Patterns - LiveComponent and the Single Responsibility Principle',
@@ -735,7 +800,7 @@
                         field: 'LiveView',
                         topic: '0500-code examples',
                         title: 'Geo Racer',
-                        comment: 'Repo of Geo Racer by Zack Kayser (Gaslight)',
+                        comment: 'Repo of Geo Racer by Zack Kayser and Beau Heubach (Gaslight)',
                         suggestedBy: 'Ula',
                         glink: 'https://github.com/zkayser/georacer'
                     },
@@ -781,6 +846,7 @@
                     }
                 ]
         }
+
     </script>
 </body>
 </html>

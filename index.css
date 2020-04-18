@@ -1,6 +1,6 @@
 .grid-container {
   display: grid;
-  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-columns: 33.3vw 33.3vw 33.3vw;
 }
 
 .grid-item {
@@ -43,4 +43,32 @@
 .linkA:hover {
   cursor: pointer;
   color: green;
+}
+.tabFontSize{
+  font-size: 24px;
+}
+.titleS{
+  color: black;
+}
+.titleS:hover {
+  cursor: pointer;
+  color: green;
+}
+@media (max-width:1300px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 49.8vw 49.8vw;
+  }
+  .tabFontSize{
+    font-size: 18px;
+  }
+}
+@media (max-width:800px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 99.8%;
+  }
+  .tabFontSize{
+    font-size: 10px;
+  }
 }
