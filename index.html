@@ -113,7 +113,6 @@
                 topics = topics.filter(i => 
                 i.topic.toUpperCase().includes(searchTerm) ||
                 i.title.toUpperCase().includes(searchTerm) ||
-                i.suggestedBy.toUpperCase().includes(searchTerm) ||
                 i.comment.toUpperCase().includes(searchTerm));
             }
             var subheadersSet = getSubheads(topics);
@@ -188,15 +187,10 @@
                     var url = document.createElement("input");
                     url.type = "text"
                     url.value = topics[i].glink
-                    url.style.width = "15%";
+                    url.style.width = "50%";
                     url.style.color = "black";
                     aCardInner3.appendChild(url);
                     
-                    var suggested = document.createElement("span");
-                    suggested.style.color = "black";
-                    suggested.style.marginLeft = "10px";
-                    suggested.innerHTML = " suggested by: " + topics[i].suggestedBy
-                    aCardInner3.appendChild(suggested);
                     subheaderEls[topics[i].topic].appendChild(aCard);
                 }
             }
@@ -209,7 +203,7 @@
                         topic: '0100-official documentation',
                         title: 'Elixir homepage',
                         comment: 'Landing page of Elixir official website',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://elixir-lang.org'
                     },
                     {
@@ -217,7 +211,7 @@
                         topic: '0100-official documentation',
                         title: 'Links to libraries',
                         comment: 'Links to docs on Elixir, EEx, ExUnit, IEx, Logger and Mix',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://elixir-lang.org/docs.html'
                     },
                     {
@@ -225,7 +219,7 @@
                         topic: '0100-official documentation',
                         title: 'Elixir docs',
                         comment: 'Documentation on Elixir only',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://elixir-lang.org/getting-started/introduction.html'
                     },
                     {
@@ -233,7 +227,7 @@
                         topic: '0100-official documentation',
                         title: 'Elixir API and examples',
                         comment: 'Elixir API with detailed examples',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://hexdocs.pm/elixir/Enum.html#content'
                     },
                     {
@@ -241,7 +235,7 @@
                         topic: '0100-official documentation',
                         title: 'IEx Hex docs',
                         comment: 'IEx - Elixirs interactive shell',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/iex/IEx.html'
                     },
                     {
@@ -249,7 +243,7 @@
                         topic: '0100-official documentation',
                         title: 'ExUnit Hex docs',
                         comment: 'ExUnit - unit testing framework for Elixir',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/ex_unit/ExUnit.html'
                     },
                     {
@@ -257,7 +251,7 @@
                         topic: '0100-official documentation',
                         title: 'Mix Hex docs',
                         comment: 'Mix is a build tool that provides tasks for dev and testing',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/mix/Mix.html'
                     },
                     {
@@ -265,7 +259,7 @@
                         topic: '0100-official documentation',
                         title: 'Logger Hex docs',
                         comment: 'A logger for Elixir applications.',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/logger/Logger.html'
                     },
                     {
@@ -273,7 +267,7 @@
                         topic: '0200-other docs and general introductions',
                         title: 'Elixir School - contents',
                         comment: 'although Not more detailed than official docs it is an alternative source',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://elixirschool.com/en/lessons/basics/basics/'
                     },
                     {
@@ -281,7 +275,7 @@
                         topic: '0200-other docs and general introductions',
                         title: 'Intro to Elixir',
                         comment: 'Medium article - Introduction to Elixir',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://medium.com/better-programming/introduction-to-elixir-9d2a21e3147c'
                     },
                     {
@@ -289,7 +283,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'umbrella projects',
                         comment: 'Medium article - A dig into elixir’s umbrella projects',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://medium.com/stackavenue/what-is-an-umbrella-project-bc07e5f268ca'
                     },
                     {
@@ -297,7 +291,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Intro to OOP in Elixir',
                         comment: 'OOP in Elixir vs Ruby OOP',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://dev.to/bakenator/intro-to-oop-in-elixir-3c9i'
                     },
                     {
@@ -305,7 +299,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Elixir Protocols',
                         comment: 'Medium article - Shape Up With Elixir Protocols',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://tech.nested.com/shape-up-with-elixir-protocols-fc78482ec4fc'
                     },
                     {
@@ -313,7 +307,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'OOP & Elixir Protocols',
                         comment: 'Medium article - Solving the Expression Problem with Elixir. Approaching Elixir from OOP, armed with protocols',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://tech.nested.com/shape-up-with-elixir-protocols-fc78482ec4fc'
                     },
                     {
@@ -321,7 +315,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Zips in Elixir',
                         comment: 'Medium article - Zips in Elixir — Using protocols for triple dispatch and ultimate flexibility',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://medium.com/@ItizAdz/zip-elixir-abusing-protocols-for-triple-dispatch-and-ultimate-flexibility-4c817a5940d6'
                     },
                     {
@@ -329,7 +323,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'OOP - practical example',
                         comment: 'Please try this exercise where you would otherwise use OOP. Then please click link below to see a very good solution. URL: https://exercism.io/my/tracks/elixir, exercise: Robot Simulator. ',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://exercism.io/tracks/elixir/exercises/robot-simulator/solutions/8d004d1190624cf082aebaf0f315a892'
                     },
                     {
@@ -337,7 +331,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Idiomatic Elixir',
                         comment: 'YouTube video by José Valim (Elixir creator) - Idioms for building distributed fault-tolerant applications with Elixir',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.youtube.com/watch?v=MMfYXEH9KsY'
                     },
                     {
@@ -345,7 +339,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Idiomatic Elixir - 2',
                         comment: 'YouTube video - Claudio Ortolina - Idiomatic Elixir - Bristech 2016',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.youtube.com/watch?v=a-8u6g8Wbf8'
                     },
                     {
@@ -353,7 +347,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Elixir style guide',
                         comment: 'This is community style guide for the Elixir programming language.',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://github.com/christopheradams/elixir_style_guide'
                     },
                     {
@@ -361,7 +355,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Pipe Operator',
                         comment: 'Basic intro to Pipe Operator',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://elixirschool.com/en/lessons/basics/pipe-operator/'
                     },
                     {
@@ -369,7 +363,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Elixir Guards',
                         comment: 'Hex docs - Guards are a way to augment pattern matching with more complex checks',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/elixir/guards.html'
                     },
                     {
@@ -377,7 +371,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Patterns and guards',
                         comment: 'pattern matching allows to assert on the shape or extract values from data-structures. Patterns are often augmented with guards',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/elixir/patterns-and-guards.html#guards'
                     },
                     {
@@ -385,7 +379,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Comprehensions',
                         comment: 'Comprehensions in Elixir (incl. example with filters)',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://toranbillups.com/blog/archive/2018/10/18/comprehensions-in-elixir/'
                     },
                     {
@@ -393,7 +387,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Anonymous functions',
                         comment: 'Short but useful summary of Anonymous functions',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://prograils.com/courses/elixir/ch/anonymous-functions-overview'
                     },
                     {
@@ -401,7 +395,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Trailing bang (foo!)',
                         comment: 'A trailing bang (exclamation mark) signifies a function or macro where failure cases raise an exception.',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/elixir/naming-conventions.html#trailing-bang-foo'
                     },
                     {
@@ -409,7 +403,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Typespecs',
                         comment: 'Elixir comes with a notation for declaring types and specifications.',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/elixir/typespecs.html#content'
                     },
                     {
@@ -417,7 +411,7 @@
                         topic: '0300-concepts and special aspects',
                         title: '& in &(&1 + &2)',
                         comment: 'add_two = &(&1 + 2) - what is &(... and what is &1 ?',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://toranbillups.com/blog/archive/2018/09/28/ampersand-and-functions-in-elixir/'
                     },
                     {
@@ -425,7 +419,7 @@
                         topic: '0300-concepts and special aspects',
                         title: '=> or : in maps?',
                         comment: 'Which separator should be used in maps  => or : ?',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://stackoverflow.com/questions/53025466/what-is-the-difference-between-and-in-an-elixir-map'
                     },
                     {
@@ -433,7 +427,7 @@
                         topic: '0300-concepts and special aspects',
                         title: '"With" syntax - 1',
                         comment: 'refactoring Elixir code using with syntax (called a “special form” in the documentation), and guard clauses',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://toranbillups.com/blog/archive/2018/10/16/using-with-in-elixir/'
                     },
                     {
@@ -441,7 +435,7 @@
                         topic: '0300-concepts and special aspects',
                         title: '"With" syntax - 2',
                         comment: 'refactoring Elixir code using with syntax (called a “special form” in the documentation), and guard clauses',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://blog.sundaycoding.com/blog/2017/12/27/elixir-with-syntax-and-guard-clauses/'
                     },
                     {
@@ -449,7 +443,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Control Flow in Elixir',
                         comment: 'Medium article - Using Control Flow in Elixir to Improve Discoverability',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://medium.com/podium-engineering/using-control-flow-in-elixir-to-improve-discoverability-21341b27d851'
                     },
                     {
@@ -457,7 +451,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Elixir and IO Lists',
                         comment: 'Elixir and IO Lists, Part 1: Building Output Efficiently',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.bignerdranch.com/blog/elixir-and-io-lists-part-1-building-output-efficiently/'
                     },
                     {
@@ -465,7 +459,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Elixir and Unicode',
                         comment: 'Elixir and Unicode, Part 1: Unicode and UTF-8 Explained',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.bignerdranch.com/blog/elixir-and-unicode-part-1-unicode-and-utf-8-explained/'
                     },
                     {
@@ -473,7 +467,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Dialyzer and type specifications',
                         comment: 'covers What Dialyzer is and how it works & writing type specifications and defining your own types',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://livebook.manning.com/book/the-little-elixir-and-otp-guidebook/chapter-10/1'
                     },
                     {
@@ -481,7 +475,7 @@
                         topic: '0400-debugging, testing, refactoring, etc.',
                         title: 'refactor Elixir code',
                         comment: 'Refactoring a Function in Elixir',
-                        suggestedBy: 'superChris',
+
                         glink: 'https://dockyard.com/blog/2020/04/01/refactoring-a-function-in-elixir'
                     },
                     {
@@ -489,7 +483,7 @@
                         topic: '0400-debugging, testing, refactoring, etc.',
                         title: 'debugging Elixir code',
                         comment: 'YouTube Video on identifying function header mismatch, opening modules and functions in editors, and prying.',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.youtube.com/watch?v=LE2y4kh56pQ'
                     },
                     {
@@ -497,7 +491,7 @@
                         topic: '0400-debugging, testing, refactoring, etc.',
                         title: 'Testing',
                         comment: 'Testing guide from elixirschool.com',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://elixirschool.com/en/lessons/basics/testing/'
                     },
                     {
@@ -505,7 +499,7 @@
                         topic: '0400-debugging, testing, refactoring, etc.',
                         title: 'Elixir mocks',
                         comment: 'Mocks and explicit contracts - article by Elixir founder José Valim',
-                        suggestedBy: 'Ula',
+
                         glink: ''
                     },
                     {
@@ -513,7 +507,7 @@
                         topic: '0600-books, courses and tutorials',
                         title: 'The Little Elixir & OTP Guidebook',
                         comment: 'Online book with few restrictions',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://livebook.manning.com/book/the-little-elixir-and-otp-guidebook/table-of-contents/24'
                     },
                     {
@@ -521,7 +515,7 @@
                         topic: '0600-books, courses and tutorials',
                         title: 'Learning resources',
                         comment: 'Learning resources from https://elixir-lang.org/learning.html',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://elixir-lang.org/learning.html'
                     },
                     {
@@ -529,7 +523,7 @@
                         topic: '0600-books, courses and tutorials',
                         title: 'Udemy course on Elixir and Phoenix',
                         comment: 'A very good course with hand on projects - NO LiveView though',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.udemy.com/course/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/'
                     },
                     {
@@ -537,7 +531,7 @@
                         topic: '0700-series of Elixir & Phoenix blogs/articles',
                         title: 'elixirschool.com blogs',
                         comment: 'Blogs in elixirschool.com',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://elixirschool.com/blog/'
                     },
                     {
@@ -545,7 +539,7 @@
                         topic: '0700-series of Elixir & Phoenix blogs/articles',
                         title: 'Toran Billups series',
                         comment: 'Toran Billups - Elixir publication series. Very short but very useful',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://toranbillups.com'
                     },
                     {
@@ -553,7 +547,7 @@
                         topic: '0700-series of Elixir & Phoenix blogs/articles',
                         title: 'Samuel Mullen series',
                         comment: 'Samuel Mullen - Elixir publication series. Very short but very useful',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://samuelmullen.com/articles/'
                     },
                     {
@@ -561,7 +555,7 @@
                         topic: '0100-official documentation',
                         title: 'Phoenix Hex Guides',
                         comment: 'Guides on Phoenix is a web development framework',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://hexdocs.pm/phoenix/overview.html#content'
                     },
                     {
@@ -569,7 +563,7 @@
                         topic: '0100-official documentation',
                         title: 'Phoenix Hex Modules',
                         comment: 'Documentation of the Phoenix modules',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://hexdocs.pm/phoenix/Phoenix.html#content'
                     },
                     {
@@ -577,15 +571,38 @@
                         topic: '0100-official documentation',
                         title: 'Phoenix.HTML docs',
                         comment: 'Helpers related to producing HTML forms - useful tool when working with templates',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#content'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Phoenix EEx docs',
+                        comment: 'Hex docs for EEx (Embedded Elixir)',
+
+                        glink: 'https://hexdocs.pm/eex/EEx.html#content'
                     },
                     {
                         field: 'Phoenix',
                         topic: '0100-official documentation',
                         title: 'Ecto Hex docs',
                         comment: 'This guide is an introduction to Ecto, the database wrapper and query generator for Elixir.',
-                        suggestedBy: 'Ula',
+
+                        glink: 'https://hexdocs.pm/ecto/getting-started.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Ecto Association Guide',
+                        comment: 'Brief guide on three kinds of associations - one-to-one, one-to-many, many-to-many',
+                        glink: 'https://hexdocs.pm/ecto/2.2.11/associations.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0100-official documentation',
+                        title: 'Schemaless changesets',
+                        comment: 'Changesets can also be used with "regular" structs too by passing a tuple with the data and its types',
+
                         glink: 'https://hexdocs.pm/ecto/getting-started.html'
                     },
                     {
@@ -593,7 +610,7 @@
                         topic: '0100-official documentation',
                         title: 'Phoenix.Pagination',
                         comment: 'Simple pagination for Ecto and Phoenix using plaing EEx templates',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/phoenix_pagination/readme.html'
                     },
                     {
@@ -601,7 +618,7 @@
                         topic: '0100-official documentation',
                         title: 'Plug Hex docs',
                         comment: 'Docs for Plug - a specification for composable modules between web applications',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/plug/readme.html'
                     },
                     {
@@ -609,7 +626,7 @@
                         topic: '0100-official documentation',
                         title: 'Other docs',
                         comment: 'List of other resources for learning about Phoenix and some of the projects it depends on.',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/phoenix/learning.html'
                     },
                     {
@@ -617,15 +634,23 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Phoenix Templates',
                         comment: 'Brief introduction to Phoenix Templates',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://samuelmullen.com/articles/phoenix-templates/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0300-concepts and special aspects',
+                        title: 'Phoenix Templates - 2',
+                        comment: 'Phoenix Templates Are Just Functions',
+
+                        glink: 'http://www.jeramysingleton.com/phoenix-templates-are-just-functions/'
                     },
                     {
                         field: 'Phoenix',
                         topic: '0300-concepts and special aspects',
                         title: 'Ecto and Models',
                         comment: 'Medium article - Introduction to Ecto and Models',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://whatdidilearn.info/2018/01/28/introduction-to-ecto-and-models.html'
                     },
                     {
@@ -633,7 +658,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Ecto and models - 2',
                         comment: 'Toptal article - Meet Ecto, No-compromise Database Wrapper for Concurrent Elixir Apps',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.toptal.com/elixir/meet-ecto-database-wrapper-for-elixir'
                     },
                     {
@@ -641,7 +666,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Custom Validations',
                         comment: 'Writing Custom Validations With Ecto 3',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://toranbillups.com/blog/archive/2019/02/25/writing-custom-validations-with-ecto-3/'
                     },
                     {
@@ -649,7 +674,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Ecto Changesets',
                         comment: 'What are changesets?',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://elixirschool.com/en/lessons/ecto/changesets/'
                     },
                     {
@@ -657,7 +682,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Ecto Changesets - 2',
                         comment: 'Medium article - How to Use Ecto.Changeset',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://medium.com/flatiron-labs/how-to-use-ecto-changeset-a745633eefda'
                     },
                     {
@@ -665,7 +690,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Changesets — put, cast, embeds & assocs',
                         comment: 'Great Medium article: Ecto Changesets — put, cast, embeds and assocs. Remember the difference once and for all!',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://medium.com/@ItizAdz/ecto-changesets-put-cast-embeds-and-assocs-remember-the-difference-once-and-for-all-10781cc60857'
                     },
                     {
@@ -673,7 +698,7 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Ecto — Cast-ing sugar',
                         comment: 'Medium article - Ecto — Cast-ing sugar',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://medium.com/@ItizAdz/ecto-cast-ing-sugar-31bddbc62cd7'
                     },
                     {
@@ -681,15 +706,22 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Attach IEx to Docker',
                         comment: 'Attach IEx to running Elixir inside docker container',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://toranbillups.com/blog/archive/2019/04/20/attach-iex-to-running-elixir-inside-docker-container/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0300-concepts and special aspects',
+                        title: 'CI/CD with Phoenix',
+                        comment: 'Article - CI/CD with Phoenix, GitHub Actions, and Gigalixir',
+                        glink: 'https://www.mitchellhanberg.com/ci-cd-with-phoenix-github-actions-and-gigalixir/'
                     },
                     {
                         field: 'Phoenix',
                         topic: '0400-debugging, testing, refactoring, etc.',
                         title: 'debugging Phoenix code',
                         comment: 'Debugging a Controller, debugging a View, debugging a Template, debugging a Model, debugging in Tests',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://medium.com/@diamondgfx/debugging-phoenix-with-iex-pry-5417256e1d11'
                     },
                     {
@@ -697,7 +729,7 @@
                         topic: '0400-debugging, testing, refactoring, etc.',
                         title: 'debug Phoenix apps',
                         comment: 'YouTube video on debugging a Phoenix app, in-line inspection and configuring IEx session to make things faster',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.youtube.com/watch?v=EBbSM6DSZnA'
                     },
                     {
@@ -705,15 +737,71 @@
                         topic: '0400-debugging, testing, refactoring, etc.',
                         title: 'Phoenix testing',
                         comment: 'Hex docs - Introduction to Testing',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://hexdocs.pm/phoenix/testing.html#content'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0450-auth and related',
+                        title: 'Auth solution',
+                        comment: 'Dashbit article by José Valim- An upcoming authentication solution for Phoenix',
+
+                        glink: 'https://dashbit.co/blog/a-new-authentication-solution-for-phoenix'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0450-auth and related',
+                        title: 'Auth - article',
+                        comment: 'article - How to implement Authorization in elixir and phoenix',
+
+                        glink: 'https://dev.to/haseebeqx/how-to-implement-authorization-in-elixir-and-phoenix-5d22'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0450-auth and related',
+                        title: 'Überauth Hex docs',
+                        comment: 'An Elixir Authentication System for Plug-based Web Applications',
+
+                        glink: 'https://hexdocs.pm/ueberauth/readme.html#content'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0450-auth and related',
+                        title: 'Guardian Hex docs',
+                        comment: 'Guardian provides a singular interface for authentication in Elixir applications that is token based',
+
+                        glink: 'https://hexdocs.pm/guardian/Guardian.html'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0450-auth and related',
+                        title: 'Detailed auth guide',
+                        comment: 'Article/guide - Ueberauth and guardian setup for a Phoenix rest API',
+
+                        glink: 'http://blog.nathansplace.co.uk/2018/ueberauth-and-guardian'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0450-auth and related',
+                        title: 'Überauth example',
+                        comment: 'Github Überauth example repo',
+
+                        glink: 'https://github.com/ueberauth/ueberauth_example/blob/master/lib/ueberauth_example_web/controllers/auth_controller.ex'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0450-auth and related',
+                        title: 'Überauth + Guardian example',
+                        comment: 'Github Überauth + Guardian example repo',
+
+                        glink: 'https://gitlab.com/nathamanath/phoenix_auth_example'
                     },
                     {
                         field: 'Phoenix,LiveView',
                         topic: '0600-books, courses and tutorials',
                         title: 'Programming Phoenix 1.4',
                         comment: 'written by Phoenix creator Chris McCord, Elixir creator José Valim and others',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://pragprog.com/book/phoenix14/programming-phoenix-1-4'
                     },
                     {
@@ -721,23 +809,39 @@
                         topic: '0600-books, courses and tutorials',
                         title: 'Mastering Phoenix Framework',
                         comment: 'open-source book "Mastering Phoenix Framework" by Shankar Dhanasekaran',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://shankardevy.com/phoenix-inside-out-mpf/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0600-books, courses and tutorials',
+                        title: 'Ecto book - free',
+                        comment: 'Free e-book - The Little Ecto Cookbook',
+
+                        glink: 'https://dashbit.co/ebooks/the-little-ecto-cookbook'
                     },
                     {
                         field: 'Phoenix',
                         topic: '0600-books, courses and tutorials',
                         title: 'File upload tutorial',
                         comment: 'Step-by-Step Tutorial to Build a Phoenix App that Supports User Upload',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.poeticoding.com/step-by-step-tutorial-to-build-a-phoenix-app-that-supports-user-uploads/'
+                    },
+                    {
+                        field: 'Phoenix',
+                        topic: '0800-misc. useful quotes, fragments and extracts',
+                        title: 'controller vs view',
+                        comment: "It is possible to respond with JSON back directly from the controller and skip the View. However, if we think about a controller as having the responsibilities of receiving a request and fetching data to be sent back, data manipulation and formatting don't fall under those responsibilities. A view gives us a module responsible for formatting and manipulating the data.",
+
+                        glink: 'https://hexdocs.pm/phoenix/views.html#content'
                     },
                     {
                         field: 'LiveView',
                         topic: '0100-official documentation',
                         title: 'LiveView Hex docs',
                         comment: 'Phoenix LiveView docs',
-                        suggestedBy: 'Zack',
+
                         glink: 'https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#content'
                     },
                     {
@@ -745,7 +849,7 @@
                         topic: '0200-other docs and general introductions',
                         title: 'LiveView Walk-Through',
                         comment: 'Walk-Through of Phoenix LiveView by elixirschool.com',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://elixirschool.com/blog/phoenix-live-view/'
                     },
                     {
@@ -753,7 +857,7 @@
                         topic: '0200-other docs and general introductions',
                         title: 'LiveView Video Walk-Through',
                         comment: 'YouTube video - Chris McCord (Phoenix creator) - Keynote: Phoenix LiveView - Interactive Apps without Javascript - ElixirConf EU 2019',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.youtube.com/watch?v=8xJzHq8ru0M'
                     },
                     {
@@ -761,7 +865,7 @@
                         topic: '0200-other docs and general introductions',
                         title: 'LiveView Video Walk-Through - 2',
                         comment: 'YouTube video - ElixirConf 2019 - Phoenix LiveView Demystified - Alex Garibay',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.youtube.com/watch?v=9eOo8hSbMAc'
                     },
                     {
@@ -769,15 +873,23 @@
                         topic: '0300-concepts and special aspects',
                         title: 'Design Patterns',
                         comment: 'LiveView Design Patterns - LiveComponent and the Single Responsibility Principle',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://elixirschool.com/blog/live-view-live-component/'
+                    },
+                    {
+                        field: 'LiveView',
+                        topic: '0300-concepts and special aspects',
+                        title: 'From conn to socket',
+                        comment: 'Elixir forum - passing info from the conn to the socket (includes response by chrismccord)',
+
+                        glink: 'https://elixirforum.com/t/liveview-passing-info-from-the-conn-to-the-socket/22074'
                     },
                     {
                         field: 'LiveView',
                         topic: '0300-concepts and special aspects',
                         title: 'URL update without refresh',
                         comment: 'article on Phoenix LiveView – Change the URL without refreshing the page',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.poeticoding.com/phoenix-liveview-change-the-url-without-refreshing-the-page/'
                     },
                     {
@@ -785,7 +897,7 @@
                         topic: '0400-debugging, testing, refactoring, etc.',
                         title: 'refactor LiveView apps',
                         comment: 'refactor to make code simpler and to reduce the number of messages exchanged between our browser and LiveView',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.poeticoding.com/phoenix-liveview-live_link/'
                     },
                     {
@@ -793,7 +905,7 @@
                         topic: '0500-code examples',
                         title: '14 LiveView examples',
                         comment: 'Phoenix LiveView examples coded by Phoenix creator Chris McCord and Elixir creator José Valim. Run this repo and see 14 LiveView examples working. Updated recently.',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://github.com/chrismccord/phoenix_live_view_example'
                     },
                     {
@@ -801,7 +913,7 @@
                         topic: '0500-code examples',
                         title: 'Geo Racer',
                         comment: 'Repo of Geo Racer by Zack Kayser and Beau Heubach (Gaslight)',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://github.com/zkayser/georacer'
                     },
                     {
@@ -809,7 +921,6 @@
                         topic: '0500-code examples',
                         title: 'LiveView example - Counter',
                         comment: 'Phoenix LiveView counter - example code',
-                        suggestedBy: 'Al',
                         glink: 'https://github.com/dwyl/phoenix-LiveView-counter-tutorial'
                     },
                     {
@@ -817,7 +928,7 @@
                         topic: '0500-code examples',
                         title: 'LiveView example - Counter',
                         comment: 'Phoenix LiveView counter - example code and video guide',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://dennisbeatty.com/2019/03/19/how-to-create-a-counter-with-phoenix-live-view.html'
                     },
                     {
@@ -825,7 +936,7 @@
                         topic: '0500-code examples',
                         title: 'LiveView example - ToDo App',
                         comment: 'Phoenix LiveView ToDo app - example code and video guide',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://dennisbeatty.com/2019/04/24/how-to-create-a-todo-list-with-phoenix-liveview.html'
                     },
                     {
@@ -833,7 +944,7 @@
                         topic: '0500-code examples',
                         title: 'Phoenix Phrenzy projects',
                         comment: 'Phoenix Phrenzy is a contest for developers to build with Phoenix LiveView. Repos of contest projects.',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://phoenixphrenzy.com/results'
                     },
                     {
@@ -841,7 +952,7 @@
                         topic: '0700-series of Elixir & Phoenix blogs/articles',
                         title: 'Series by Alvise Susmel',
                         comment: 'LiveView publication series by Alvise Susmel',
-                        suggestedBy: 'Ula',
+
                         glink: 'https://www.poeticoding.com/all/'
                     }
                 ]
